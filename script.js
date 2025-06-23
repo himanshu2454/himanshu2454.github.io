@@ -19,6 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Smooth scroll for sidebar navigation
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
     // Reveal animations on scroll
     const revealElements = document.querySelectorAll('section');
     
@@ -36,4 +47,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', reveal);
     reveal();
+
+    // Highlight active section in sidebar
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 80;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Contact form animation (button feedback)
+    document.querySelectorAll('.contact-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            btn.textContent = 'Sending...';
+            setTimeout(() => {
+                btn.textContent = 'Send Message';
+                alert('Thank you for reaching out!');
+                form.reset();
+            }, 1200);
+        });
+    });
 });
