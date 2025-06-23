@@ -96,7 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     themeToggle.addEventListener('click', () => {
         const current = html.getAttribute('data-theme');
-        setTheme(current === 'dark' ? 'light' : 'dark');
+        const nextTheme = current === 'dark' ? 'light' : 'dark';
+        setTheme(nextTheme);
     });
 
     // On load, set theme from localStorage or system preference
@@ -117,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon.classList.remove('fa-sun');
             icon.classList.add('fa-moon');
         }
+        // Fix: force body and html to always have correct data-theme
+        document.body.setAttribute('data-theme', theme);
     }
 
     // Custom scroll for header navigation to keep header visible
@@ -143,4 +146,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Hamburger menu toggle for mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const headerNav = document.getElementById('header-nav');
+    if (hamburger && headerNav) {
+        hamburger.addEventListener('click', () => {
+            headerNav.classList.toggle('open');
+            hamburger.querySelector('i').classList.toggle('fa-bars');
+            hamburger.querySelector('i').classList.toggle('fa-times');
+        });
+        // Close menu on nav link click (mobile)
+        headerNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                headerNav.classList.remove('open');
+                hamburger.querySelector('i').classList.add('fa-bars');
+                hamburger.querySelector('i').classList.remove('fa-times');
+            });
+        });
+    }
 });

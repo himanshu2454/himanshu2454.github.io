@@ -16,12 +16,6 @@
     --header-bg-dark: #181a20;
     --header-text: #22223b;
     --header-text-dark: #fff;
-    --card-bg: #fff;
-    --input-bg: #fff;
-    --input-border: #e0e7ef;
-    --button-bg: var(--primary);
-    --button-bg-hover: var(--primary-dark);
-    --button-text: #fff;
 }
 
 [data-theme="dark"] {
@@ -90,19 +84,57 @@
     color: #fff;
 }
 
-/* --- CARDS & SECTIONS --- */
-.skill-card, .project-card, .achievement-card, .exp-item {
-    background: var(--card-bg);
-    color: var(--text);
-    transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+/* --- BUTTON SPACING FIX --- */
+.cta-button, .download-btn, .contact-form .cta-button.contact-btn {
+    margin-bottom: 0 !important;
+    vertical-align: middle;
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0;
 }
 
-[data-theme="dark"] .skill-card,
-[data-theme="dark"] .project-card,
-[data-theme="dark"] .achievement-card,
-[data-theme="dark"] .exp-item {
-    background: var(--card-bg);
-    color: var(--text);
+/* --- CARDS & SECTIONS --- */
+.skill-card, .project-card, .achievement-card, .exp-item {
+    background: #f9fafe;
+    color: #23263a;
+    border: 1px solid #e0e7ef;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.08);
+}
+.hero, .about, .skills, .projects, .contact, .experience, .achievements {
+    background: #fff;
+    color: #23263a;
+    border: 1px solid #e0e7ef;
+    box-shadow: 0 4px 16px rgba(99,102,241,0.07);
+}
+.hero .highlight {
+    color: var(--primary-dark);
+    background: #e0e7ef;
+    border-radius: 6px;
+    padding: 0 0.3em;
+}
+
+/* --- DARK THEME CARD & CONTENT CONTRAST FIXES --- */
+[data-theme="dark"] .skill-card, [data-theme="dark"] .project-card, [data-theme="dark"] .achievement-card, [data-theme="dark"] .exp-item {
+    background: #23263a;
+    color: #e5e7eb;
+    border: 1px solid #35395a;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.13);
+}
+[data-theme="dark"] .hero, [data-theme="dark"] .about, [data-theme="dark"] .skills, [data-theme="dark"] .projects, [data-theme="dark"] .contact, [data-theme="dark"] .experience, [data-theme="dark"] .achievements {
+    background: #181a20;
+    color: #e5e7eb;
+    border: 1px solid #23263a;
+    box-shadow: 0 4px 16px rgba(99,102,241,0.13);
+}
+[data-theme="dark"] .hero .highlight {
+    color: #a5b4fc;
+    background: #23263a;
+    border-radius: 6px;
+    padding: 0 0.3em;
 }
 
 /* --- FORMS --- */
@@ -166,6 +198,17 @@ body, .main-col, .main-content, .about, .skills, .projects, .contact, .hero, .ex
 }
 [data-theme="dark"] .main-header {
     background: var(--header-bg);
+    color: var(--header-text);
+}
+
+/* Fix: Light theme header text color */
+[data-theme="light"] .main-header {
+    background: var(--header-bg);
+    color: var(--header-text);
+}
+[data-theme="light"] .header-logo,
+[data-theme="light"] .header-nav a,
+[data-theme="light"] .theme-toggle {
     color: var(--header-text);
 }
 
@@ -250,6 +293,17 @@ body {
 
 [data-theme="dark"] .main-header {
     background: var(--header-bg-dark);
+}
+
+/* Fix: Light theme header text color */
+[data-theme="light"] .main-header {
+    background: var(--header-bg);
+    color: var(--header-text);
+}
+[data-theme="light"] .header-logo,
+[data-theme="light"] .header-nav a,
+[data-theme="light"] .theme-toggle {
+    color: var(--header-text);
 }
 
 .header-content {
@@ -348,6 +402,10 @@ body {
     box-shadow: var(--shadow);
     height: 100%;
     display: flex;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    z-index: 100;
 }
 
 /* Main column: scrollable, takes remaining width */
@@ -385,6 +443,12 @@ body {
         min-width: 0;
         position: static;
         box-shadow: none;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 1.5rem 1rem;
+        gap: 2rem;
     }
     .main-col {
         height: auto;
@@ -394,6 +458,133 @@ body {
         max-width: 100vw;
     }
 }
+
+/* --- MOBILE LAYOUT CLEANUP & FIXES --- */
+@media (max-width: 700px) {
+    .layout-2col {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    .sidebar {
+        display: none !important;
+    }
+    .mobile-hero {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        background: var(--bg-glass);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin: 1.2rem 0.7rem 1.5rem 0.7rem;
+        padding: 2rem 1rem 1.5rem 1rem;
+        text-align: center;
+        animation: fadeIn 1s;
+    }
+    .main-header {
+        position: static;
+        box-shadow: none;
+        background: var(--header-bg);
+        z-index: 2002;
+    }
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.7rem 1vw;
+        position: relative;
+    }
+    .header-nav {
+        display: none;
+        flex-direction: column;
+        background: var(--bg-glass);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        z-index: 2003;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        border-radius: 0 0 18px 18px;
+        padding: 1rem 0;
+        gap: 0.5rem;
+    }
+    .header-nav.open {
+        display: flex;
+    }
+    .hamburger {
+        display: block !important;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: var(--header-text);
+        cursor: pointer;
+        z-index: 2004;
+    }
+    .main-content,
+    .main-content.scrollable {
+        padding: 1rem 0.5rem;
+        max-width: 100vw;
+        padding-top: 0;
+    }
+    .about, .skills, .projects, .contact, .hero, .experience, .achievements {
+        padding: 1.2rem 0.7rem;
+    }
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    }
+    .achievement-cards {
+        grid-template-columns: 1fr;
+    }
+    .experience-timeline {
+        padding-left: 0.5rem;
+        margin-left: 0;
+    }
+    .exp-item {
+        margin-left: 0;
+        padding-left: 1.2rem;
+    }
+    .profile-img {
+        width: 80px;
+        height: 80px;
+    }
+    .profile-name {
+        font-size: 1.2rem;
+    }
+    .profile-role {
+        font-size: 0.95rem;
+    }
+    .hero h1 {
+        font-size: 1.3rem;
+    }
+    .hero .hero-title {
+        font-size: 1.05rem;
+    }
+    .hero .hero-desc {
+        font-size: 0.98rem;
+    }
+    .cta-button, .download-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.98rem;
+    }
+}
+@media (max-width: 500px) {
+    .cta-button, .download-btn, .contact-form .cta-button.contact-btn {
+        padding: 0.5rem 0.7rem !important;
+        font-size: 0.92rem !important;
+        min-width: 100px;
+        min-height: 36px;
+        border-radius: 12px;
+    }
+}
+@media (min-width: 701px) {
+    .mobile-hero {
+        display: none !important;
+    }
+    .hamburger {
+        display: none !important;
+    }
+}
+/* --- END MOBILE LAYOUT CLEANUP & FIXES --- */
 
 .profile {
     text-align: center;
@@ -423,9 +614,19 @@ body {
 }
 
 .profile-role {
-    font-size: 1.1rem;
-    color: #e0e7ef;
-    margin-bottom: 1rem;
+    color: var(--text-light);
+    font-size: 1.08rem;
+    margin-top: 0.2em;
+    margin-bottom: 0.7em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color var(--transition);
+}
+[data-theme="light"] .profile-role {
+    color: var(--text);
+}
+[data-theme="dark"] .profile-role {
+    color: #a1a1aa;
 }
 
 .profile-social {
@@ -436,14 +637,33 @@ body {
 }
 
 .profile-social a {
-    color: #fff;
-    font-size: 1.3rem;
-    transition: color var(--transition), transform var(--transition);
+    color: #2563eb; /* blue-600 for good contrast */
+    background: #e0e7ef;
+    font-size: 1.35rem;
+    margin: 0 0.3em;
+    transition: color var(--transition), background var(--transition), box-shadow var(--transition);
+    border-radius: 50%;
+    padding: 0.35em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.08);
 }
 
 .profile-social a:hover {
-    color: var(--accent);
-    transform: scale(1.15);
+    background: #6366f1;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(99,102,241,0.18);
+}
+
+[data-theme="dark"] .profile-social a {
+    color: #a5b4fc;
+    background: #23263a;
+}
+
+[data-theme="dark"] .profile-social a:hover {
+    background: #6366f1;
+    color: #fff;
 }
 
 .profile-resume-btn {
@@ -762,338 +982,109 @@ footer {
     border: 1px solid var(--border);
 }
 
-@media (max-width: 1100px) {
-    .container {
-        flex-direction: column;
-    }
-    .sidebar {
-        width: 100%;
-        flex-direction: row;
-        align-items: flex-start;
-        border-radius: 0 0 32px 32px;
-        height: auto;
-        position: static;
-        padding: 1.5rem 1rem;
-        gap: 2rem;
-    }
-    .main-content {
-        padding: 2rem 2vw 1rem 2vw;
-    }
+/* --- STICKY SIDEBAR FOR DESKTOP, NON-STICKY FOR MOBILE --- */
+.sidebar {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    z-index: 100;
 }
-
-@media (max-width: 1200px) {
-    .main-content {
-        max-width: 100vw;
-        padding: 2rem 2vw 1rem 2vw;
-    }
-    .main-content.scrollable {
-        max-width: 100vw;
-        padding: 2rem 2vw 1rem 2vw;
-    }
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    }
-    .achievement-cards {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-}
-
 @media (max-width: 900px) {
-    .layout-2col {
-        flex-direction: column;
-        height: auto;
-    }
     .sidebar {
-        width: 100%;
-        max-width: 100vw;
-        border-radius: 0 0 32px 32px;
-        height: auto;
-        min-width: 0;
-        position: static;
-        box-shadow: none;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: center;
-        padding: 1.5rem 1rem;
-        gap: 2rem;
-    }
-    .main-col {
-        height: auto;
-    }
-    .main-content,
-    .main-content.scrollable {
-        padding: 1.5rem 1vw 1rem 1vw;
-        max-width: 100vw;
-    }
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    }
-    .achievement-cards {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        position: static !important;
+        height: auto !important;
+        top: unset !important;
     }
 }
-
 @media (max-width: 700px) {
     .sidebar {
+        display: none !important;
+        position: static !important;
+        height: auto !important;
+        top: unset !important;
+    }
+    .main-header {
+        position: static !important;
+        top: unset;
+        width: 100%;
+        z-index: 1;
+        box-shadow: none;
+        background: var(--header-bg);
+    }
+    .mobile-hero {
+        display: flex !important;
         flex-direction: column;
         align-items: center;
-        border-radius: 0 0 24px 24px;
-        padding: 1rem 0.5rem;
-        gap: 1rem;
+        background: var(--bg-glass);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin: 1.2rem 0.7rem 1.5rem 0.7rem;
+        padding: 2rem 1rem 1.5rem 1rem;
+        text-align: center;
+        animation: fadeIn 1s;
+    }
+    .container,
+    .layout-2col,
+    .main-col,
+    .main-content,
+    .main-content.scrollable {
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-width: 100vw !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
     .main-content,
     .main-content.scrollable {
-        padding: 1rem 0.5rem;
+        padding: 1rem 0.5rem 0 0.5rem !important;
     }
     .about, .skills, .projects, .contact, .hero, .experience, .achievements {
         padding: 1.2rem 0.7rem;
     }
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.7rem 1vw;
+        position: relative;
     }
-    .achievement-cards {
-        grid-template-columns: 1fr;
+    .header-nav {
+        display: none;
+        flex-direction: column;
+        background: var(--bg-glass);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100vw;
+        z-index: 2003;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        border-radius: 0 0 18px 18px;
+        padding: 1rem 0;
+        gap: 0.5rem;
     }
-    .experience-timeline {
-        padding-left: 0.5rem;
-        margin-left: 0;
+    .header-nav.open {
+        display: flex;
     }
-    .exp-item {
-        margin-left: 0;
-        padding-left: 1.2rem;
-    }
-}
-
-@media (max-width: 500px) {
-    .main-content,
-    .main-content.scrollable {
-        padding: 0.5rem 0.2rem;
-    }
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    .achievement-cards {
-        grid-template-columns: 1fr;
-    }
-    .profile-img {
-        width: 80px;
-        height: 80px;
-    }
-    .profile-name {
-        font-size: 1.2rem;
-    }
-    .profile-role {
-        font-size: 0.95rem;
+    .hamburger {
+        display: block !important;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: var(--header-text);
+        cursor: pointer;
+        z-index: 2004;
     }
 }
-
-/* Fix scroll offset for anchor links so header doesn't cover content */
-html {
-    scroll-padding-top: 80px; /* Ensures anchor targets are not hidden under sticky header */
-}
-
-.main-content.scrollable {
-    /* ...existing code... */
-    /* Remove or reduce scroll-padding-top here to avoid double offset */
-    scroll-padding-top: 0;
-}
-
-/* Experience Section Styles */
-.experience {
-    background: var(--bg-glass);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 2rem 2rem 1.5rem 2rem;
-    margin-bottom: 2.5rem;
-    animation: fadeInUp 1s;
-}
-
-.experience h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.2rem;
-    color: var(--primary);
-}
-
-.experience-timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    position: relative;
-    margin-left: 1rem;
-    padding-left: 2rem;
-}
-
-.exp-item {
-    position: relative;
-    background: #fff;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
-    padding: 1.2rem 1.5rem 1.2rem 2rem;
-    margin-left: -2.5rem;
-    transition: box-shadow var(--transition), transform var(--transition);
-}
-
-.exp-item:hover {
-    box-shadow: 0 6px 18px rgba(99,102,241,0.13);
-    transform: translateY(-2px) scale(1.02);
-}
-
-.exp-role {
-    font-size: 1.13rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-    margin-bottom: 0.2rem;
-}
-
-.exp-company {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 0.1rem;
-}
-
-.exp-duration {
-    font-size: 0.98rem;
-    color: var(--text-light);
-    margin-bottom: 0.6rem;
-}
-
-.exp-desc ul {
-    padding-left: 1.2rem;
-    margin: 0;
-    color: var(--text-light);
-    font-size: 1rem;
-    line-height: 1.7;
-}
-
-.exp-desc ul li {
-    margin-bottom: 0.3rem;
-}
-
-[data-theme="dark"] .experience,
-[data-theme="dark"] .exp-item {
-    background: #23263a;
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(99,102,241,0.13);
-}
-
-[data-theme="dark"] .exp-role {
-    color: #a5b4fc;
-}
-
-[data-theme="dark"] .exp-company {
-    color: #fbbf24;
-}
-
-/* Achievements Section Styles */
-.achievements {
-    background: var(--bg-glass);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 2rem 2rem 1.5rem 2rem;
-    margin-bottom: 2.5rem;
-    animation: fadeInUp 1s;
-}
-.achievements h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.2rem;
-    color: var(--primary);
-}
-.achievement-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.2rem;
-}
-.achievement-card {
-    background: #fff;
-    border-radius: var(--radius);
-    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
-    padding: 1.2rem 1rem;
-    transition: transform var(--transition), box-shadow var(--transition);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    align-items: flex-start;
-}
-.achievement-card:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 6px 18px rgba(99,102,241,0.13);
-}
-.achievement-card h3 {
-    font-size: 1.1rem;
-    color: var(--primary);
-    margin-bottom: 0.3rem;
-}
-.achievement-card p {
-    color: var(--text-light);
-    font-size: 0.98rem;
-}
-[data-theme="dark"] .achievements,
-[data-theme="dark"] .achievement-card {
-    background: #23263a;
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(99,102,241,0.13);
-}
-[data-theme="dark"] .achievement-card h3 {
-    color: #a5b4fc;
-}
-
-@media (max-width: 700px) {
-    .experience, .experience-timeline, .exp-item {
-        padding: 1.2rem 0.7rem;
-        margin-left: 0;
+@media (min-width: 701px) {
+    .mobile-hero {
+        display: none !important;
     }
-    .experience-timeline {
-        padding-left: 1rem;
-    }
-    .exp-item {
-        margin-left: 0;
-        padding-left: 1.2rem;
-    }
-    .exp-item::before {
-        left: -1.2rem;
-        top: 1.2rem;
-        width: 0.8rem;
-        height: 0.8rem;
+    .hamburger {
+        display: none !important;
     }
 }
-
-.download-btn{
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-}
-
-/* Light/Dark mode for .cta-button */
-.cta-button {
-    display: inline-block;
-    background: var(--primary);
-    color: #fff;
-    padding: 0.8rem 2rem;
-    border-radius: var(--radius);
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 1.08rem;
-    box-shadow: 0 2px 8px rgba(99,102,241,0.10);
-    transition: background var(--transition), transform var(--transition), color var(--transition);
-    border: none;
-    cursor: pointer;
-}
-
-.cta-button:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px) scale(1.04);
-}
-
-[data-theme="dark"] .cta-button {
-    background: var(--primary-dark);
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(99,102,241,0.18);
-}
-
-[data-theme="dark"] .cta-button:hover {
-    background: var(--primary);
-    color: #fff;
-}
+/* --- END STICKY SIDEBAR/NON-STICKY MOBILE --- */
 
