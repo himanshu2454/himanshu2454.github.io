@@ -484,13 +484,12 @@ body {
 
 /* Sticky Header */
 .main-header {
-    position: sticky;
+    position: sticky !important;
     top: 0;
     width: 100%;
-    z-index: 2000;
-    background: var(--header-bg);
+    z-index: 2002;
     box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    transition: background 0.3s;
+    background: var(--header-bg);
 }
 
 [data-theme="dark"] .main-header {
@@ -684,10 +683,12 @@ body {
         animation: fadeIn 1s;
     }
     .main-header {
-        position: static;
-        box-shadow: none;
-        background: var(--header-bg);
+        position: sticky !important;
+        top: 0;
+        width: 100%;
         z-index: 2002;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        background: var(--header-bg);
     }
     .header-content {
         flex-direction: row;
@@ -767,6 +768,13 @@ body {
     .cta-button, .download-btn {
         padding: 0.7rem 1.2rem;
         font-size: 0.98rem;
+    }
+    .main-content.scrollable {
+        padding-top: 70px !important; /* Add space for sticky header */
+    }
+    /* If you have a scroll-to-top button, add margin-top */
+    .scroll-to-top {
+        margin-top: 70px !important;
     }
 }
 @media (max-width: 500px) {
@@ -1207,11 +1215,11 @@ footer {
         top: unset !important;
     }
     .main-header {
-        position: static !important;
-        top: unset;
+        position: sticky !important;
+        top: 0;
         width: 100%;
-        z-index: 1;
-        box-shadow: none;
+        z-index: 2002;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         background: var(--header-bg);
     }
     .mobile-hero {
@@ -1225,6 +1233,17 @@ footer {
         padding: 2rem 1rem 1.5rem 1rem;
         text-align: center;
         animation: fadeIn 1s;
+    }
+    .sidebar-animated-bg {
+        display: block !important;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 0;
+        pointer-events: none;
+        width: 100vw;
+        height: 100vh;
+        background: none;
+        overflow: hidden;
     }
     .container,
     .layout-2col,
