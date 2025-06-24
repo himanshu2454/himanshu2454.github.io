@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Under Construction</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6366f1 0%, #f59e42 100%);
+            overflow: hidden;
+        }
+        .under-construction {
+            text-align: center;
+            color: #fff;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        }
+        .factory-animation {
+            margin: 0 auto 1.5rem auto;
+            width: 180px;
+            height: 120px;
+            position: relative;
+        }
+        /* Factory base */
+        .factory-base {
+            position: absolute;
+            bottom: 0;
+            left: 20px;
+            width: 140px;
+            height: 40px;
+            background: #fff;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 24px rgba(99,102,241,0.15);
+        }
+        /* Chimney */
+        .chimney {
+            position: absolute;
+            left: 40px;
+            bottom: 40px;
+            width: 18px;
+            height: 38px;
+            background: #f59e42;
+            border-radius: 5px 5px 2px 2px;
+        }
+        /* Smoke */
+        .smoke {
+            position: absolute;
+            left: 47px;
+            bottom: 78px;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: smoke-move 2.2s infinite ease-in-out;
+        }
+        .smoke2 {
+            left: 52px;
+            width: 8px;
+            height: 8px;
+            animation-delay: 0.7s;
+        }
+        .smoke3 {
+            left: 44px;
+            width: 7px;
+            height: 7px;
+            animation-delay: 1.2s;
+        }
+        @keyframes smoke-move {
+            0% { opacity: 0.7; transform: translateY(0) scale(1); }
+            60% { opacity: 0.4; transform: translateY(-30px) scale(1.3); }
+            100% { opacity: 0; transform: translateY(-50px) scale(1.5); }
+        }
+        /* Crane */
+        .crane-base {
+            position: absolute;
+            left: 120px;
+            bottom: 40px;
+            width: 8px;
+            height: 40px;
+            background: #6366f1;
+            border-radius: 4px;
+        }
+        .crane-arm {
+            position: absolute;
+            left: 124px;
+            bottom: 80px;
+            width: 50px;
+            height: 6px;
+            background: #6366f1;
+            border-radius: 3px;
+            transform: rotate(-20deg);
+        }
+        .crane-hook {
+            position: absolute;
+            left: 168px;
+            bottom: 60px;
+            width: 4px;
+            height: 18px;
+            background: #f59e42;
+            border-radius: 2px;
+            animation: hook-move 2.5s infinite alternate;
+        }
+        .crane-load {
+            position: absolute;
+            left: 163px;
+            bottom: 50px;
+            width: 14px;
+            height: 10px;
+            background: #fff;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+            animation: load-move 2.5s infinite alternate;
+        }
+        @keyframes hook-move {
+            0% { bottom: 60px; }
+            100% { bottom: 45px; }
+        }
+        @keyframes load-move {
+            0% { bottom: 50px; }
+            100% { bottom: 35px; }
+        }
+        /* Gears */
+        .gear {
+            position: absolute;
+            left: 80px;
+            bottom: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 4px solid #6366f1;
+            border-top: 4px solid #f59e42;
+            border-bottom: 4px solid #fff;
+            animation: gear-spin 1.2s linear infinite;
+        }
+        .gear2 {
+            left: 100px;
+            bottom: 5px;
+            width: 14px;
+            height: 14px;
+            border-width: 3px;
+            border-top: 3px solid #fff;
+            border-bottom: 3px solid #f59e42;
+            opacity: 0.7;
+            animation: gear-spin-rev 1.8s linear infinite;
+        }
+        @keyframes gear-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes gear-spin-rev {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+        .uc-text {
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.03em;
+        }
+        .uc-desc {
+            font-size: 1.1rem;
+            color: #fff;
+            opacity: 0.92;
+        }
+        .uc-home {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.7rem 2rem;
+            background: #fff;
+            color: #6366f1;
+            border-radius: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.08rem;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.10);
+            transition: background 0.2s, color 0.2s;
+        }
+        .uc-home:hover {
+            background: #6366f1;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="under-construction">
+        <div class="factory-animation">
+            <div class="factory-base"></div>
+            <div class="chimney"></div>
+            <div class="smoke"></div>
+            <div class="smoke smoke2"></div>
+            <div class="smoke smoke3"></div>
+            <div class="crane-base"></div>
+            <div class="crane-arm"></div>
+            <div class="crane-hook"></div>
+            <div class="crane-load"></div>
+            <div class="gear"></div>
+            <div class="gear gear2"></div>
+        </div>
+        <div class="uc-text">Blog Coming Soon!</div>
+        <div class="uc-desc">This page is under construction.<br>Check back soon for updates and articles.</div>
+        <a href="index.html" class="uc-home">Back to Home</a>
+    </div>
+</body>
+</html>

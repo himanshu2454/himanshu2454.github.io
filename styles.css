@@ -251,6 +251,208 @@ body, .main-header, .sidebar, .main-content, .about, .skills, .projects, .contac
     transition: background 0.3s, color 0.3s, border 0.3s, box-shadow 0.3s;
 }
 
+/* --- GLOBAL FONT IMPROVEMENT --- */
+body, .main-col, .main-content, .about, .skills, .projects, .contact, .hero, .experience, .achievements, .profile, .profile-name, .profile-role, .profile-social, .sidebar, .header-logo, .header-nav a, .theme-toggle, .skill-card, .exp-item, .achievement-card, .cta-button, .download-btn, .contact-form input, .contact-form textarea {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif !important;
+    letter-spacing: 0.01em;
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- EXPERIENCE SECTION BEAUTIFICATION --- */
+.experience {
+    background: var(--bg-glass);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s;
+}
+.experience-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+    padding-left: 2.5rem;
+}
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    border-radius: 2px;
+    opacity: 0.18;
+}
+.exp-item {
+    background: var(--card-bg, #fff);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    padding: 1.3rem 1.5rem 1.1rem 2.5rem;
+    position: relative;
+    border-left: 5px solid var(--primary);
+    transition: background 0.3s, color 0.3s;
+}
+.exp-item::before {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: 1.5rem;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.13);
+    border: 3px solid #fff;
+    z-index: 2;
+}
+.exp-role {
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.2rem;
+}
+.exp-company {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.1rem;
+}
+.exp-duration {
+    font-size: 0.98rem;
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+    font-weight: 500;
+}
+.exp-desc ul {
+    margin: 0.2rem 0 0 1.2rem;
+    padding: 0;
+    list-style: disc;
+    color: var(--text);
+    font-size: 1.01rem;
+    line-height: 1.7;
+}
+[data-theme="dark"] .experience {
+    background: #23263a;
+}
+[data-theme="dark"] .exp-item {
+    background: #181a20;
+    border-left: 5px solid #6366f1;
+}
+[data-theme="dark"] .exp-item::before {
+    border: 3px solid #23263a;
+}
+[data-theme="dark"] .exp-role {
+    color: #a5b4fc;
+}
+[data-theme="dark"] .exp-company {
+    color: #a1a1aa;
+}
+[data-theme="dark"] .exp-duration {
+    color: #f59e42;
+}
+[data-theme="dark"] .exp-desc ul {
+    color: #e5e7eb;
+}
+
+/* --- KEY ACHIEVEMENTS BEAUTIFICATION --- */
+.achievements {
+    background: var(--bg-glass);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s;
+}
+.achievement-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.achievement-card {
+    background: var(--card-bg, #fff);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    padding: 1.3rem 1.5rem 1.1rem 1.5rem;
+    position: relative;
+    border-left: 5px solid var(--accent);
+    transition: background 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 120px;
+}
+.achievement-card h3 {
+    font-size: 1.13rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+}
+.achievement-card p {
+    color: var(--text-light);
+    font-size: 1.01rem;
+    margin: 0;
+}
+[data-theme="dark"] .achievements {
+    background: #23263a;
+}
+[data-theme="dark"] .achievement-card {
+    background: #181a20;
+    border-left: 5px solid #f59e42;
+}
+[data-theme="dark"] .achievement-card h3 {
+    color: #fbbf24;
+}
+[data-theme="dark"] .achievement-card p {
+    color: #e5e7eb;
+}
+
+/* --- SIDEBAR ANIMATED BACKGROUND --- */
+.sidebar {
+    position: relative;
+    overflow: hidden;
+}
+.sidebar-animated-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    background: none;
+    overflow: hidden;
+}
+.sidebar-animated-bg .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.7;
+    animation: sidebar-star-twinkle 2.5s infinite alternate;
+    box-shadow: 0 0 8px 2px #fff, 0 0 16px 4px var(--primary);
+}
+.sidebar-animated-bg .star1 { width: 2.5px; height: 2.5px; left: 12%; top: 18%; animation-delay: 0s; }
+.sidebar-animated-bg .star2 { width: 1.8px; height: 1.8px; left: 60%; top: 12%; animation-delay: 0.7s; }
+.sidebar-animated-bg .star3 { width: 2.2px; height: 2.2px; left: 80%; top: 60%; animation-delay: 1.2s; }
+.sidebar-animated-bg .star4 { width: 1.5px; height: 1.5px; left: 30%; top: 70%; animation-delay: 1.7s; }
+.sidebar-animated-bg .star5 { width: 2.8px; height: 2.8px; left: 45%; top: 40%; animation-delay: 2.1s; }
+.sidebar-animated-bg .star6 { width: 1.2px; height: 1.2px; left: 75%; top: 25%; animation-delay: 1.3s; }
+.sidebar-animated-bg .star7 { width: 2.1px; height: 2.1px; left: 20%; top: 80%; animation-delay: 0.9s; }
+.sidebar-animated-bg .star8 { width: 1.7px; height: 1.7px; left: 55%; top: 75%; animation-delay: 1.8s; }
+.sidebar-animated-bg .star9 { width: 2.3px; height: 2.3px; left: 85%; top: 35%; animation-delay: 0.4s; }
+.sidebar-animated-bg .star10 { width: 1.4px; height: 1.4px; left: 38%; top: 55%; animation-delay: 2.3s; }
+
+@keyframes sidebar-star-twinkle {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
 /* --- END THEME ENHANCEMENTS --- */
 :root {
     --primary: #6366f1;
@@ -312,7 +514,7 @@ body {
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.7rem 2vw;
+    padding: 0.7rem 4vw;
 }
 
 .header-logo {

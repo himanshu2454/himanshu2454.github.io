@@ -83,11 +83,26 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const btn = form.querySelector('button');
             btn.textContent = 'Sending...';
+
+            // Get form values
+            const name = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const message = form.querySelector('textarea').value;
+
+            // Construct mailto link
+            const to = 'hchouhan3654@gmail.com';
+            const cc = encodeURIComponent(email);
+            const subject = encodeURIComponent('Portfolio Contact: ' + name);
+            const body = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\n\n${message}`
+            );
+            const mailto = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&cc=${cc}&su=${subject}&body=${body}`;
+
             setTimeout(() => {
                 btn.textContent = 'Send Message';
-                alert('Thank you for reaching out!');
+                window.open(mailto, '_blank');
                 form.reset();
-            }, 1200);
+            }, 900);
         });
     });
 
@@ -165,4 +180,74 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // --- EMAILJS INTEGRATION FOR CONTACT FORM ---
+    // Replace with your EmailJS user ID, service ID, and template ID
+    const EMAILJS_USER_ID = 'YOUR_EMAILJS_USER_ID';
+    const EMAILJS_SERVICE_ID = 'YOUR_EMAILJS_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID';
+
+    if (window.emailjs) {
+        emailjs.init(EMAILJS_USER_ID);
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            btn.textContent = 'Sending...';
+
+            const name = contactForm.querySelector('input[type="text"]').value;
+            const email = contactForm.querySelector('input[type="email"]').value;
+            const message = contactForm.querySelector('textarea').value;
+
+            // EmailJS params
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                message: message,
+                cc_email: email // for CC
+            };
+
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(function(response) {
+                    btn.textContent = 'Message Sent!';
+                    setTimeout(() => btn.textContent = 'Send Message', 2000);
+                    contactForm.reset();
+                }, function(error) {
+                    btn.textContent = 'Send Failed';
+                    setTimeout(() => btn.textContent = 'Send Message', 2000);
+                });
+        });
+    }
+
+    // --- SMOOTH SCROLL FOR ALL CONTACT LINKS/BUTTONS ---
+    function scrollToContact() {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    // Only scroll for anchor links, not for the contact form button
+    document.querySelectorAll('a[href="#contact"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            scrollToContact();
+        });
+    });
+
+    // --- SMOOTH SCROLL FOR ALL NAVIGATION LINKS (EXCEPT BLOG) ---
+    document.querySelectorAll('.header-nav a[href^="#"], .sidebar-nav a[href^="#"], .mobile-hero .profile-social a[href^="#"], .cta-button[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
 });
